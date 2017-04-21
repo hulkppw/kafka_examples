@@ -21,6 +21,7 @@ import java.util.Map;
  */
 public class SimpleConsumerDemo {
     private static void printMessages(ByteBufferMessageSet messageSet) throws UnsupportedEncodingException {
+        System.out.println(messageSet.sizeInBytes());
         for (MessageAndOffset messageAndOffset : messageSet) {
             ByteBuffer payload = messageAndOffset.message().payload();
             byte[] bytes = new byte[payload.limit()];
@@ -30,9 +31,9 @@ public class SimpleConsumerDemo {
     }
 
     private static void generateData() {
-        Producer producer2 = new Producer(KafkaProperties.TOPIC2, false);
+        Producer producer2 = new Producer(KafkaProperties.TOPIC2, true);
         producer2.start();
-        Producer producer3 = new Producer(KafkaProperties.TOPIC3, false);
+        Producer producer3 = new Producer(KafkaProperties.TOPIC3, true);
         producer3.start();
         try {
             Thread.sleep(1000);
@@ -43,7 +44,6 @@ public class SimpleConsumerDemo {
 
     public static void main(String[] args) throws Exception {
         generateData();
-
         SimpleConsumer simpleConsumer = new SimpleConsumer(KafkaProperties.KAFKA_SERVER_URL,
             KafkaProperties.KAFKA_SERVER_PORT,
             KafkaProperties.CONNECTION_TIMEOUT,
@@ -58,7 +58,7 @@ public class SimpleConsumerDemo {
         FetchResponse fetchResponse = simpleConsumer.fetch(req);
         printMessages(fetchResponse.messageSet(KafkaProperties.TOPIC2, 0));
 
-        System.out.println("Testing single multi-fetch");
+        /*System.out.println("Testing single multi-fetch");
         Map<String, List<Integer>> topicMap = new HashMap<String, List<Integer>>();
         topicMap.put(KafkaProperties.TOPIC2, Collections.singletonList(0));
         topicMap.put(KafkaProperties.TOPIC3, Collections.singletonList(0));
@@ -75,6 +75,6 @@ public class SimpleConsumerDemo {
                 System.out.println("Response from fetch request no: " + ++fetchReq);
                 printMessages(fetchResponse.messageSet(topic, offset));
             }
-        }
+        }*/
     }
 }

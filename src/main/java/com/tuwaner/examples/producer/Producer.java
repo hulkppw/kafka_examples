@@ -35,13 +35,14 @@ public class Producer extends Thread{
             String messageStr = "Message_" + messageNo;
             long startTime = System.currentTimeMillis();
             if (isAsync){
+                producer.send(new ProducerRecord<Integer, String>(topic, messageNo, messageStr),
+                    new DemoCallBack(startTime, messageNo, messageStr));
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                producer.send(new ProducerRecord<Integer, String>(topic, messageNo, messageStr),
-                    new DemoCallBack(startTime, messageNo, messageStr));
+                messageNo++;
             }
         }
     }
