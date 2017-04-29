@@ -13,4 +13,6 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.10.0.0'
+    compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.10'
+
 }
