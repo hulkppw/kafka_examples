@@ -1,8 +1,5 @@
 package com.tuwaner.examples;
 
-/**
- * Created by wanglingyun on 2017/4/21.
- */
 public class KafkaProperties {
 
     public static final String TOPIC = "topic1";

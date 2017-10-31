@@ -11,14 +11,8 @@ import kafka.message.MessageAndOffset;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-/**
- * Created by wanglingyun on 2017/4/21.
- */
+
 public class SimpleConsumerDemo {
     private static void printMessages(ByteBufferMessageSet messageSet) throws UnsupportedEncodingException {
         System.out.println(messageSet.sizeInBytes());

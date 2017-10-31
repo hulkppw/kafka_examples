@@ -10,9 +10,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Collections;
 import java.util.Properties;
 
-/**
- * Created by wanglingyun on 2017/4/21.
- */
+
 public class Consumer  extends ShutdownableThread {
     private final KafkaConsumer<Integer, String> consumer;
     private final String topic;

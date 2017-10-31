@@ -1,18 +1,13 @@
 package com.tuwaner.examples.producer;
 
 import com.tuwaner.examples.KafkaProperties;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import sun.plugin2.jvm.RemoteJVMLauncher;
 
 import java.util.Properties;
 
-/**
- * Created by wanglingyun on 2017/4/21.
- */
 public class Producer extends Thread{
     private final KafkaProducer<Integer, String> producer;
     private final String topic;
@@ -29,6 +24,7 @@ public class Producer extends Thread{
         this.isAsync = isAsync;
     }
 
+    @Override
     public void run(){
         int messageNo = 1;
         while (true){
@@ -61,6 +57,7 @@ class DemoCallBack implements Callback{
         this.message = message;
     }
 
+    @Override
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if(metadata != null){
